@@ -1,0 +1,64 @@
+<div class="container login-page-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="login-register-page">
+
+                <!--  Header Content -->
+                <div class="page-header-content">
+                    <div class="content">
+                        <h3>Welcome back</h3>
+                        <span>Don't have an account? <a routerLink="/register">Sign Up!</a></span>
+                    </div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="social-login-btns">
+                    <button class="facebook-login-btn sc-btn">
+                        <span>Facebook</span>
+                    </button>
+
+                    <button class="google-login-btn sc-btn">
+                        <span>Google</span>
+                    </button>
+                </div>
+
+                <!-- Form -->
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="login-form">
+
+                    <div *ngIf="error" class="notification error" [hidden]="!error">{{error}}</div>
+                    <div *ngIf="success" class="notification success" [hidden]="!success">{{success}}</div>
+
+                    <div class="floating-label-input">
+                        <input type="text" class="floating-input" formControlName="email" id="emailaddress" placeholder="Phone / Email Address" [ngClass]="{ 'is-invalid': f.email.errors && (f.email.touched || submitted) }" required />
+                        <label for="emailaddress" class="floating-label" data-content="Phone / Email Address"><span
+                                class="hidden-visually">Phone / Email Address</span></label>
+                        <div *ngIf="f.email.errors && (f.email.touched || submitted)" class="invalid-form">
+                            <div *ngIf="f.email.errors.required">Phone / Email is required</div>
+                        </div>
+                    </div>
+                    <div class="floating-label-input input-with-icon-right">
+                        <input type="password" class="floating-input" formControlName="password" id="password" placeholder="Password" [ngClass]="{ 'is-invalid': f.password.errors && (f.password.touched || submitted) }" required />
+                        <label for="password" class="floating-label" data-content="Password"><span
+                                class="hidden-visually">Password</span></label>
+                        <div *ngIf="f.password.errors && (f.password.touched || submitted)" class="invalid-form">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <button type="submit" class="sc-btn email-login-btn" form="login-form">
+                        Sign In
+                    </button>
+
+                    <button type="button" [routerLink]="['/dashboard']" class="sc-btn email-login-btn" form="login-form">
+                        Go to Dashboard
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    <a href="#" routerLink="/forgetpassword" class="forgot-password">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
